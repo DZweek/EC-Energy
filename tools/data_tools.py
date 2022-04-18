@@ -53,6 +53,7 @@ def calculate_averages(data: pd.DataFrame) -> pd.DataFrame:
 
 def plot_data(x_axis: str, y_axis: str, data: pd.DataFrame, path: pathlib.WindowsPath) -> plt.plot:
   # comments
+  data = data.dropna(subset=[x_axis, y_axis])
   data = data.sort_values([x_axis])
   regression, offset = np.polyfit(data[x_axis], data[y_axis], 1)
   plt.plot(data[x_axis], data[y_axis], 'o')
